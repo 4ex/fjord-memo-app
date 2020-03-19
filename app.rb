@@ -8,6 +8,11 @@ get '/' do
   app_name
 end
 
+# Template
+get '/template' do
+  erb :template
+end
+
 # New
 get '/new' do
   "New Memo - #{app_name}"
@@ -22,4 +27,3 @@ end
 get '/*' do |id|
   "Show #{id} - #{app_name}"
 end
-
