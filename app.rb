@@ -14,8 +14,13 @@ class Memo
   end
 
   class << self
-    def create(id, text)
-      File.open("data/#{id}.txt", "w") {|f| f.puts(text)}
+    def index
+      index = {}
+      Dir.glob("data/[0-9]*.txt").each{|f| index[f.slice(/[0-9]+/).to_i] = File.open(f){|f| f.readline}}
+      index
+    end
+    def create(text)
+      File.open("data/#{latest_id + 1}.txt", "w") {|f| f.puts(text)}
     end
     def read(id)
       File.open("data/#{id}.txt", "r") {|f| f.read}
@@ -25,6 +30,10 @@ class Memo
     end
     def delete(id)
       File.delete("data/#{id}.txt")
+    end
+    private
+    def latest_id
+      Dir.glob("[0-9]*.txt", base: "data").map{|f| f.delete(".txt").to_i}.max || 0
     end
   end
 end
@@ -37,17 +46,14 @@ end
 
 # Show Top Page
 get '/' do
-  index = {}
-  Dir.glob("data/[0-9]*.txt").each{|f| index[f.slice(/[0-9]+/).to_i] = File.open(f){|f| f.readline}}
   @title = APP_NAME
-  @index = index
+  @index = Memo.index
   erb :top
 end
 
 # Create Item
 post '/' do
-  latest_id = Dir.glob("[0-9]*.txt", base: "data").map{|f| f.delete(".txt").to_i}.max || 0
-  Memo.create(latest_id + 1, params[:text])
+  Memo.create(params[:text])
   redirect '/'
 end
 
