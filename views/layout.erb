@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="ja">
-
 <head>
   <meta charset="utf-8">
   <title><%= @title %></title>
@@ -10,12 +9,14 @@
   <link rel="stylesheet" href="/assets/css/app.css">
   <meta name="theme-color" content="#fafafa">
 </head>
-
 <body>
-  <main>
-    <h1><a href="/">Memo App</a></h1>
-    <%= yield %>
-  </main>
+  <div class="page">
+    <header>
+      <h1><a href="/"><%= @app_name %></a></h1>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+  </div>
 </body>
-
 </html>

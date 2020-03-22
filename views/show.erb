@@ -1,16 +1,13 @@
-<h2>Show id: <%= @id %></h2>
-
-<div>
-  <div>
-メモの1行目<br>
-<br>
-メモの内容が入ります。メモの内容が入ります。<br>
-メモの内容が入ります。<br>
-メモの内容が入ります。メモの内容が入ります。<br>
-メモの内容が入ります。メモの内容が入ります。<br>
-メモの内容が入ります。
+<form method="post" action="/<%= @memo.id %>" class="container">
+  <input type="hidden" name="_method" value="delete">
+  <div class="content">
+    <article>
+      <p><%= @memo.text.gsub(/\n/, "<br>") %></p>
+    </article>
   </div>
-  <a href="/<%= @id %>/edit">Edit</a>
-  <a href="">Delete</a>
-  <a href="/">戻る</a>
-</div>
+  <div class="action">
+    <a href="/<%= @memo.id %>/edit" class="btn">Edit</a>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/" class="btn">Back</a>
+  </div>
+</form>

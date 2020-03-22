@@ -1,16 +1,11 @@
-<h2>Edit id: <%= @id %></h2>
-
-<form>
-  <div>
-    <textarea>メモの1行目
-
-メモの内容が入ります。メモの内容が入ります。
-メモの内容が入ります。
-メモの内容が入ります。メモの内容が入ります。
-メモの内容が入ります。メモの内容が入ります。
-メモの内容が入ります。
-    </textarea>
+<form method="post" action="/<%= @memo.id %>" class="container">
+  <input type="hidden" name="_method" value="patch">
+  <div class="content">
+    <textarea name="text" cols="40" rows="10" autofocus><%= @memo.text %></textarea>
   </div>
-  <button type="submit">Save</button>
-  <a href="/<%= @id %>">戻る</a>
+  <div class="action">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/<%= @memo.id %>" class="btn">Cancel</a>
+  </div>
 </form>
+
