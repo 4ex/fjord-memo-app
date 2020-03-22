@@ -1,25 +1,183 @@
-html, body {
-  background: #f0f0f0;
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+
+body {
+  background: #e9e9e9;
+  color: #404040;
+  padding-top: 2rem;
+}
+
+.page {
+  background: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+  margin: 0 auto;
+  max-width: 32em;
+  width: 100%;
+}
+
+header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 main {
-  background: #fff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin: 2em;
-  padding: 2em;
+}
+
+.content {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 32rem;
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+
+.action + .content {
+  border-bottom: 0;
+}
+
+article {
+  font-size: 1.25em;
+  padding: 1rem;
+  word-wrap: break-word;
+  width: 100%;
+  height: 100%;
 }
 
 h1 {
-  color: #808080;
-  margin-bottom: 1em;
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 0.5em;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 h1 a {
-  color: #808080;
+  color: #404040;
+  display: block;
+  padding: 1rem;
   text-decoration: none;
+  vertical-align: bottom;
 }
 
-h2 {
-  color: #ccc;
-  margin-bottom: 1em;
+h1 a:hover {
+  background: #f6f6f6;
+  color: #333333
+}
+
+.index {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);;
+}
+
+.index li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);;
+}
+
+.index li a {
+  color: #404040;
+  display: block;
+  overflow: hidden;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.index li a:hover {
+  background: #f6f6f6;
+}
+
+.action {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.btn,
+a.btn {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  background: #ffffff;
+  color: #404040;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  width: 25%;
+  min-width: 8rem;
+}
+
+.btn:hover,
+a.btn:hover {
+  background: #f6f6f6;
+}
+
+.btn-primary,
+a.btn-primary {
+  background: #404040;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.btn-primary:hover,
+a.btn-primary:hover {
+  background: #333333;
+}
+
+.btn-danger {
+  color: #cc2020;
+}
+
+textarea {
+  background: #fafafa;
+  border: 0;
+  font-size: 1.25em;
+  margin: 0;
+  padding: 1rem;
+  resize: none;
+  vertical-align: bottom;
+  width: 100%;
+  height: 100%;
+}
+
+a.btn-new {
+  width: 100%;
+}
+
+.icon-plus {
+  display: inline-block;
+  vertical-align: bottom;
+	width: 1.5rem;
+	height: 1.5rem;
+	position: relative;
+}
+
+.icon-plus i::before,
+.icon-plus i::after {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: -50%;
+	width: 80%;
+	height: 4px;
+	margin: -2px 0 0 60%;
+  background: #ffffff;
+}
+
+.icon-plus i:after {
+  transform: rotate(90deg);
+}
+
+textarea:hover {
+  background: #f6f6f6;
+}
+
+textarea:focus {
+  background: #f6f6f6;
+  outline: 2px solid rgba(0, 0, 0, 0.05);
 }
