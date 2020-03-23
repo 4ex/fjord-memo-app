@@ -31,6 +31,9 @@ class Memo
     def delete(id)
       File.delete(to_path(id))
     end
+    def exist?(id)
+      File.exist?(to_path(id))
+    end
 
     private
     def data_files
