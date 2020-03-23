@@ -10,7 +10,7 @@ before do
   @app_name = APP_NAME
 end
 
-before [%r{/([0-9]*)}, %r{/([0-9]*)/edit}] do |id|
+before %r{/(\d+)(/edit)?} do |id, edit|
   halt 404 unless Memo.exist?(id)
 end
 
@@ -34,27 +34,27 @@ get '/new' do
 end
 
 # Show Edit Page
-get %r{/([0-9]*)/edit} do |id|
+get %r{/(\d+)/edit} do |id|
   @title = "Edit #{id} - #{APP_NAME}"
   @memo = Memo.new(id)
   erb :edit
 end
 
 # Show Item
-get %r{/([0-9]*)} do |id|
+get %r{/(\d+)} do |id|
   @title = "Show #{id} - #{APP_NAME}"
   @memo = Memo.new(id)
   erb :show
 end
 
 # Update
-patch %r{/([0-9]*)} do |id|
+patch %r{/(\d+)} do |id|
   Memo.update(id, params[:text])
   redirect "/"
 end
 
 # Delete Item
-delete %r{/([0-9]*)} do |id|
+delete %r{/(\d+)} do |id|
   Memo.delete(id)
   redirect "/"
 end
