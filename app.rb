@@ -1,6 +1,6 @@
-require 'sinatra'
-require 'sinatra/reloader'
-require_relative 'lib/memo'
+require "sinatra"
+require "sinatra/reloader"
+require_relative "lib/memo"
 
 APP_NAME = "Memo"
 
@@ -15,20 +15,20 @@ before %r{/(\d+)(/edit)?} do |id, edit|
 end
 
 # Show Top Page
-get '/' do
+get "/" do
   @title = APP_NAME
   @index = Memo.index
   erb :top
 end
 
 # Create Item
-post '/' do
+post "/" do
   Memo.create(params[:text])
-  redirect '/'
+  redirect "/"
 end
 
 # Show New Page
-get '/new' do
+get "/new" do
   @title = "New Memo - #{APP_NAME}"
   erb :new
 end
