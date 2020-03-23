@@ -54,3 +54,9 @@ delete %r{/([0-9]*)} do |id|
   Memo.delete(id)
   redirect "/"
 end
+
+# 404
+not_found do
+  @error_massage = "404: Page Not Found."
+  erb :error
+end
