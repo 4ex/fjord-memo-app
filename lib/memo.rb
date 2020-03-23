@@ -34,7 +34,7 @@ class Memo
 
     private
     def data_files
-      Dir.glob("data/[0-9]*.txt")
+      Dir.glob("data/[0-9]*.txt").sort_by {|f| File.mtime(f)}.reverse
     end
     def latest_id
       data_files.map{|f| to_id(f)}.max || 0
