@@ -16,7 +16,9 @@ class Memo
   class << self
     def index
       index = {}
-      Dir.glob("data/[0-9]*.txt").each{|f| index[f.slice(/[0-9]+/).to_i] = File.open(f){|f| f.readline}}
+      data_files.each do |f|
+        index[to_id(f)] = File.open(f){|f| f.gets}
+      end
       index
     end
     def create(text)
@@ -31,9 +33,19 @@ class Memo
     def delete(id)
       File.delete("data/#{id}.txt")
     end
+
     private
+    def data_files
+      Dir.glob("data/[0-9]*.txt")
+    end
     def latest_id
-      Dir.glob("[0-9]*.txt", base: "data").map{|f| f.delete(".txt").to_i}.max || 0
+      data_files.map{|f| to_id(f)}.max || 0
+    end
+    def to_path(id)
+      "data/#{id}.txt"
+    end
+    def to_id(path)
+      path.slice(/[0-9]+/).to_i
     end
   end
 end
