@@ -30,27 +30,27 @@ get '/new' do
 end
 
 # Show Edit Page
-get "/*/edit" do |id|
+get %r{/([0-9]*)/edit} do |id|
   @title = "Edit #{id} - #{APP_NAME}"
   @memo = Memo.new(id)
   erb :edit
 end
 
 # Show Item
-get '/*' do |id|
+get %r{/([0-9]*)} do |id|
   @title = "Show #{id} - #{APP_NAME}"
   @memo = Memo.new(id)
   erb :show
 end
 
 # Update
-patch "/*" do |id|
+patch %r{/([0-9]*)} do |id|
   Memo.update(id, params[:text])
   redirect "/"
 end
 
 # Delete Item
-delete "/*" do |id|
+delete %r{/([0-9]*)} do |id|
   Memo.delete(id)
   redirect "/"
 end
