@@ -10,6 +10,10 @@ before do
   @app_name = APP_NAME
 end
 
+before [%r{/([0-9]*)}, %r{/([0-9]*)/edit}] do |id|
+  halt 404 unless Memo.exist?(id)
+end
+
 # Show Top Page
 get '/' do
   @title = APP_NAME
