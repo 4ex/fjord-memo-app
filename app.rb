@@ -46,7 +46,7 @@ end
 # Update
 patch "/*" do |id|
   Memo.update(id, params[:text])
-  redirect "/#{id}"
+  redirect "/"
 end
 
 # Delete Item
