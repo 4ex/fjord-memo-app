@@ -7,6 +7,9 @@ class Memo
   def text
     self.class.read(id)
   end
+  def html
+    text.gsub(/\n/, "<br>")
+  end
 
   class << self
     def index
