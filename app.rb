@@ -8,6 +8,15 @@ APP_NAME = "Memo"
 
 enable :method_override
 
+helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+
+  def hbr(text)
+    h(text).gsub(/\R/, '<br>')
+  end
+end
+
 before do
   @app_name = APP_NAME
 end
