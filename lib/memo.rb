@@ -12,11 +12,7 @@ class Memo
 
   class << self
     def index
-      index = {}
-      data_files.each do |file|
-        index[to_id(file)] = File.open(file) { |f| f.gets }
-      end
-      index
+      data_files.map { |fp| { id: to_id(fp), title: File.open(fp) { |f| f.gets } } }
     end
     def create(text)
       File.open(to_path(latest_id + 1), "w") { |f| f.puts(text) }
