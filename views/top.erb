@@ -3,10 +3,10 @@
     <a href="/new" title="New Memo" class="btn btn-primary btn-full"><span class="icon-plus"><i></i></span></a>
   </div>
   <div class="content">
-<% if @index.size > 0 %>
+<% unless @index.empty? %>
     <ul class="index">
-<% @index.each do |id, title| %>
-      <li><a href="/<%= id %>">[<%= id %>] <%= title %></a></li>
+<% @index.each do |memo| %>
+      <li><a href="/<%= memo[:id] %>">[<%= memo[:id] %>] <%= memo[:title] %></a></li>
 <% end %>
     </ul>
 <% end %>
