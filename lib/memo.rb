@@ -27,7 +27,7 @@ class Memo
     def update(id, text)
       File.open(to_path(id), "w") { |f| f.puts(text) }
     end
-    def delete(id)
+    def destroy(id)
       File.delete(to_path(id))
     end
     def exist?(id)
