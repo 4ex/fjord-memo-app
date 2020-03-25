@@ -6,7 +6,12 @@
 <% unless @index.empty? %>
     <ul class="index">
 <% @index.each do |memo| %>
-      <li><a href="/<%= memo[:id] %>">[<%= memo[:id] %>] <%= memo[:title] %></a></li>
+      <li>
+        <a href="/<%= memo[:id] %>">
+          <b><%= memo[:title] %></b><br>
+          <small><%= memo[:updated_at] %></small>
+        </a>
+      </li>
 <% end %>
     </ul>
 <% end %>
