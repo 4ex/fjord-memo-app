@@ -59,14 +59,14 @@ end
 # Show Edit Page
 get %r{/(\d+)/edit} do |id|
   @title = "Edit #{id} - #{APP_NAME}"
-  @memo = Memo.new(id)
+  @memo = Memo.read(id)
   erb :edit
 end
 
 # Show Item
 get %r{/(\d+)} do |id|
   @title = "Show #{id} - #{APP_NAME}"
-  @memo = Memo.new(id)
+  @memo = Memo.read(id)
   erb :show
 end
 

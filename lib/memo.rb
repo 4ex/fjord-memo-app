@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 class Memo
-  attr_reader :id
+  attr_reader :id, :text
 
-  def initialize(id)
-    @id = id
-  end
-  def text
-    self.class.read(id)
+  def initialize(id, text)
+    @id, @text = id, text
   end
 
   class << self
@@ -25,7 +22,7 @@ class Memo
       File.open(to_fp(index.max_by { |m| m[:id] } + 1), "w") { |f| f.puts(text) }
     end
     def read(id)
-      File.open(to_fp(id), "r") { |f| f.read }
+      Memo.new(id, File.open(to_fp(id), "r") { |f| f.read })
     end
     def update(id, text)
       File.open(to_fp(id), "w") { |f| f.puts(text) }
