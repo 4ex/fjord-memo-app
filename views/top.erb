@@ -9,7 +9,7 @@
       <li>
         <a href="/<%= memo[:id] %>">
           <b><%= memo[:title] %></b><br>
-          <small><%= memo[:updated_at] %></small>
+          <small><%= ft(memo[:updated_at]) %></small>
         </a>
       </li>
 <% end %>
