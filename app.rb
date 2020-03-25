@@ -13,7 +13,7 @@ helpers do
     Rack::Utils.escape_html(text)
   end
   def hbr(text)
-    h(text).gsub(/\R/, '<br>')
+    h(text).gsub(/\R/, "<br>")
   end
 end
 
