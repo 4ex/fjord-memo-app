@@ -2,6 +2,7 @@
 
 require "sinatra"
 require "sinatra/reloader"
+require "time"
 require_relative "lib/memo"
 
 APP_NAME = "Memo"
@@ -14,6 +15,17 @@ helpers do
   end
   def hbr(text)
     h(text).gsub(/\R/, "<br>")
+  end
+  def ft(time)
+    n = Time.now
+    t = Time.parse(time.to_s)
+    if t.day == n.day && n - t < 60 * 60
+      ((n - t).to_i / 60).to_s + "m ago"
+    elsif t.day == n.day && n - t < 60 * 60 * 24
+      time.strftime("%H:%M")
+    else
+      time.strftime("%Y/%m/%d")
+    end
   end
 end
 
@@ -28,7 +40,7 @@ end
 # Show Top Page
 get "/" do
   @title = APP_NAME
-  @index = Memo.index
+  @index = Memo.index.sort_by { |m| m[:updated_at] }.reverse
   erb :top
 end
 

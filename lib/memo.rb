@@ -12,32 +12,33 @@ class Memo
 
   class << self
     def index
-      data_files.map { |fp| { id: to_id(fp), title: File.open(fp) { |f| f.gets } } }
+      Dir.glob("data/[0-9]*.txt").map do |fp|
+        {
+          id: to_id(fp),
+          title: File.open(fp) { |f| f.gets },
+          created_at: File.birthtime(fp),
+          updated_at: File.mtime(fp)
+        }
+      end
     end
     def create(text)
-      File.open(to_path(latest_id + 1), "w") { |f| f.puts(text) }
+      File.open(to_fp(index.max_by { |m| m[:id] } + 1), "w") { |f| f.puts(text) }
     end
     def read(id)
-      File.open(to_path(id), "r") { |f| f.read }
+      File.open(to_fp(id), "r") { |f| f.read }
     end
     def update(id, text)
-      File.open(to_path(id), "w") { |f| f.puts(text) }
+      File.open(to_fp(id), "w") { |f| f.puts(text) }
     end
     def destroy(id)
-      File.delete(to_path(id))
+      File.delete(to_fp(id))
     end
     def exist?(id)
-      File.exist?(to_path(id))
+      File.exist?(to_fp(id))
     end
 
     private
-    def data_files
-      Dir.glob("data/[0-9]*.txt").sort_by { |f| File.mtime(f) }.reverse
-    end
-    def latest_id
-      data_files.map { |f| to_id(f) }.max || 0
-    end
-    def to_path(id)
+    def to_fp(id)
       "data/#{id}.txt"
     end
     def to_id(path)
