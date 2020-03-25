@@ -66,7 +66,7 @@ end
 
 # Delete Item
 delete %r{/(\d+)} do |id|
-  Memo.delete(id)
+  Memo.destroy(id)
   redirect "/"
 end
 
