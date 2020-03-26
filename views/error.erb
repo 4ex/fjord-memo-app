@@ -1,10 +1,9 @@
 <div class="container">
   <div class="content">
-    <article>
-      <p><%= @error_massage %></p>
+    <article class="error">
+      <h2 class="error_title"><%= @error_title %></h2>
+      <p class="error_message"><%= @error_massage %></p>
+      <p class="error_link"><a href="/" class="btn btn-primary">Back to Home</a></p>
     </article>
-  </div>
-  <div class="action">
-    <a href="/" class="btn btn-primary btn-full">Back to Home</a>
   </div>
 </div>

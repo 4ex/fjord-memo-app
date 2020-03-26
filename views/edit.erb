@@ -1,9 +1,9 @@
 <form method="post" action="/<%= @memo.id %>" class="container">
   <input type="hidden" name="_method" value="patch">
   <div class="content">
-    <textarea name="text" cols="40" rows="10" autofocus><%= @memo.text %></textarea>
+    <textarea name="text" cols="40" rows="10" required autofocus><%= @memo.text %></textarea>
   </div>
-  <div class="action">
+  <div class="action action-bottom">
     <button type="submit" class="btn btn-primary">Save</button>
     <a href="/<%= @memo.id %>" class="btn">Cancel</a>
   </div>
