@@ -33,10 +33,6 @@ before do
   @app_name = APP_NAME
 end
 
-before %r{/(\d+)(/edit)?} do |id, edit|
-  halt 404 unless Memo.exist?(id)
-end
-
 # Show Top Page
 get "/" do
   @title = APP_NAME
@@ -59,14 +55,14 @@ end
 # Show Edit Page
 get %r{/(\d+)/edit} do |id|
   @title = "Edit #{id} - #{APP_NAME}"
-  @memo = Memo.read(id)
+  @memo = Memo.show(id) || halt(404)
   erb :edit
 end
 
 # Show Item
 get %r{/(\d+)} do |id|
   @title = "Show #{id} - #{APP_NAME}"
-  @memo = Memo.read(id)
+  @memo = Memo.show(id) || halt(404)
   erb :show
 end
 
@@ -84,6 +80,14 @@ end
 
 # 404
 not_found do
-  @error_massage = "404: Page Not Found."
+  @error_title = "404"
+  @error_massage = "Page not found."
+  erb :error
+end
+
+# 500
+error do
+  @error_title = "500"
+  @error_massage = "Unexpecte error."
   erb :error
 end
