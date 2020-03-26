@@ -9,7 +9,7 @@ class Memo
 
   class << self
     def index
-      Dir.glob("data/[0-9]*.txt").map do |fp|
+      data_files.map do |fp|
         {
           id: to_id(fp),
           title: File.open(fp) { |f| f.gets },
@@ -19,10 +19,11 @@ class Memo
       end
     end
     def create(text)
-      File.open(to_fp(index.max_by { |m| m[:id] } + 1), "w") { |f| f.puts(text) }
+      latest_id = data_files.map { |fp| to_id(fp) }.max || 0
+      File.open(to_fp(latest_id + 1), "w") { |f| f.puts(text) }
     end
-    def read(id)
-      Memo.new(id, File.open(to_fp(id), "r") { |f| f.read })
+    def show(id)
+      Memo.new(id, File.open(to_fp(id), "r") { |f| f.read }) if File.exist?(to_fp(id))
     end
     def update(id, text)
       File.open(to_fp(id), "w") { |f| f.puts(text) }
@@ -30,11 +31,11 @@ class Memo
     def destroy(id)
       File.delete(to_fp(id))
     end
-    def exist?(id)
-      File.exist?(to_fp(id))
-    end
 
     private
+    def data_files
+      Dir.glob("data/[0-9]*.txt")
+    end
     def to_fp(id)
       "data/#{id}.txt"
     end
