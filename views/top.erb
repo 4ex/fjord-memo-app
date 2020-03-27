@@ -9,11 +9,15 @@
       <li>
         <a href="/<%= memo[:id] %>">
           <b><%= memo[:title] %></b><br>
-          <small><%= ft(memo[:updated_at]) %></small>
+          <small><%= format_time(memo[:updated_at]) %></small>
         </a>
       </li>
 <% end %>
     </ul>
+<% else %>
+    <article class="article-error">
+      <h2 class="error-title-empty">No Memo, yet.</h2>
+    </article>
 <% end %>
   </div>
 </div>
