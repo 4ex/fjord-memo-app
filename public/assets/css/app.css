@@ -6,6 +6,7 @@
   --font-logo: 'Courier Prime', monospace;
   --color-bg-body: #e9e9e9;
   --color-bg-content: #ffffff;
+  --color-bg-header: #fcfcfc;
   --color-bg-input: #fafafa;
   --color-bg-hilight: #f6f6f6;
   --color-bg-inverse: #404040;
@@ -23,12 +24,13 @@
   :root {
     --color-bg-body: #424242;
     --color-bg-content: #202020;
+    --color-bg-header: #232323;
     --color-bg-input: #252525;
-    --color-bg-hilight: #3b3b3b;
+    --color-bg-hilight: #2a2a2a;
     --color-bg-inverse: #bfbfbf;
     --color-bg-hilight-inverse: #dfdfdf;
-    --color-text-normal: #bfbfbf;
-    --color-text-hilight: #dfdfdf;
+    --color-text-normal: #dfdfdf;
+    --color-text-hilight: #ececec;
     --color-text-muted: #7f7f7f;
     --color-text-inverse: #202020;
     --color-text-danger: #d82c2c;
@@ -55,7 +57,7 @@ body {
 
 /* header */
 header {
-  background: var(--color-bg-content);
+  background: var(--color-bg-header);
   border-bottom: 1px solid var(--color-border-normal);
   width: 100%;
   height: 64px;
@@ -77,13 +79,14 @@ header {
 .logo a {
   color: var(--color-text-normal);
   display: block;
-  line-height: 64px;
+  line-height: 68px;
   padding: 0 1em;
   text-decoration: none;
 }
 
 .logo a:hover {
   color: var(--color-text-hilight);
+  transition: color .3s;
 }
 
 /* main */
@@ -107,31 +110,37 @@ article {
 }
 
 /* error */
-article.error {
+.article-error {
   line-height: 1.5;
-  padding-top: 2rem;
+  padding-top: 4rem;
   text-align: center;
 }
 
-.error_title {
+.error-code {
   font-family: var(--font-logo);
   font-size: 6.0rem;
   font-weight: normal;
   margin-bottom: 2rem;
 }
 
-.error_message {
+.error-title-empty {
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.error-message {
   margin: 0;
 }
 
-.error_link {
+.error-link {
   font-size: 1.0rem;
   margin-top: 4rem;
 }
 
 /* action */
 .action {
-  background: var(--color-bg-content);
+  background: var(--color-bg-header);
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -173,6 +182,7 @@ article.error {
 
 .index li a:hover {
   background: var(--color-bg-hilight);
+  transition: background .3s;
 }
 
 .index li small {
@@ -190,18 +200,19 @@ textarea {
   margin: 0;
   padding: 0.625rem 1rem;
   resize: none;
-  vertical-align: bottom;
+  vertical-align: top;
   width: 100%;
   height: calc(100vh - 48px - 81px);
 }
 
 textarea:hover {
   background: var(--color-bg-hilight);
+  transition: background .3s;
 }
 
 textarea:focus {
   background: var(--color-bg-hilight);
-  outline: 2px solid var(--color-border-normal);
+  outline: 2px solid var(--color-border-normal)
 }
 
 /* button */
@@ -214,15 +225,16 @@ a.btn {
   display: inline-block;
   font-size: 1em;
   font-weight: bold;
+  min-width: 5.5rem;
   padding: calc(0.75rem - 1px) 1rem;
   text-align: center;
   text-decoration: none;
-  min-width: 5.5rem;
 }
 
 .btn:hover,
 a.btn:hover {
   background: var(--color-bg-hilight);
+  transition: background .3s;
 }
 
 .btn-primary,
@@ -306,7 +318,7 @@ a.btn-full {
 
   .logo a {
     border-radius: 3px 3px 0 0;
-    line-height: 80px;
+    line-height: 86px;
   }
 
   .container {
