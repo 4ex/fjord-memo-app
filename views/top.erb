@@ -1,7 +1,23 @@
-<h2>Top</h2>
-<p><a href="/new">新規メモ</a></p>
-
-<ul>
-  <li><a href="/1">メモ1の1行目</a></li>
-  <li><a href="/2">メモ2の1行目</a></li>
-</ul>
+<div class="container">
+  <div class="action action-top">
+    <a href="/new" title="New Memo" class="btn btn-primary btn-full"><span class="icon-plus"><i></i></span></a>
+  </div>
+  <div class="content">
+<% unless @index.empty? %>
+    <ul class="index">
+<% @index.each do |memo| %>
+      <li>
+        <a href="/<%= memo[:id] %>">
+          <b><%= memo[:title] %></b><br>
+          <small><%= format_time(memo[:updated_at]) %></small>
+        </a>
+      </li>
+<% end %>
+    </ul>
+<% else %>
+    <article class="article-error">
+      <h2 class="error-title-empty">No Memo, yet.</h2>
+    </article>
+<% end %>
+  </div>
+</div>
