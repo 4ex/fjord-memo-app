@@ -40,7 +40,7 @@ end
 # Show Item
 get %r{/(\d+)} do |id|
   @memo = Memo.show(id) || halt(404)
-  @page_name, * = @memo.text.partition("\n")
+  @page_name = @memo.text.partition("\n").first
   erb :show
 end
 
@@ -82,7 +82,7 @@ helpers do
   def ellipsis(text, length = 24)
     text.size > length ? text.slice(0, length) + "..." : text
   end
-  def ft(time)
+  def format_time(time)
     n = Time.now
     t = Time.parse(time.to_s)
     if t.day == n.day && n - t < 60 * 60
