@@ -8,7 +8,7 @@
 <% @index.each do |memo| %>
       <li>
         <a href="/<%= memo[:id] %>">
-          <b><%= memo[:title] %></b><br>
+          <b><%= h(memo[:title]) %></b><br>
           <small><%= format_time(memo[:updated_at]) %></small>
         </a>
       </li>
