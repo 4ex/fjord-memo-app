@@ -14,7 +14,6 @@ end
 # Show Top Page
 get "/" do
   @index = Memo.index.sort_by { |m| m[:updated_at] }.reverse
-  @page_name = ""
   erb :top
 end
 
