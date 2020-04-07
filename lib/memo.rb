@@ -39,8 +39,8 @@ class Memo
     def to_fp(id)
       "data/#{id}.txt"
     end
-    def to_id(path)
-      path.slice(/\d+/).to_i
+    def to_id(fp)
+      fp.slice(/\d+/).to_i
     end
   end
 end
